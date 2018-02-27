@@ -1,0 +1,80 @@
+{	"extensionName": "Fischertechnik",
+	"description": "Extension pour le pilotage d'éléments Fischertechnik",
+	"version": "1.0",
+	"author": "Romain Rousseau",
+	"homepage": "ensim.univ-lemans.fr",
+	"sort":0,
+	"javascriptURL":"js/Fischertechnik.js",
+	"firmware":"1.0",
+	"extensionPort":0,
+	"blockSpecs": [
+		["h","Pilotage Fischertechnik","runArduino"],
+
+		["w",
+			"ARRET D'URGENCE",
+			"arretUrgence",
+		{"inc":"",
+			"def":"",
+			"setup":"",
+			"work":"",
+			"loop":""
+		}],
+
+		["w",
+			"Demarrer le moteur %d.moteurs dans le sens %d.sens",
+			"demarrerMoteur",
+			"M1",
+			"POSITIF",
+		{"inc":"",
+			"def":"int M1[3]{13,11,12}, M2[3]{8,9,10}, M3[3]{7,5,6}, M4[3]{2,3,4};\n",
+			"setup":"pinMode (M{0}[0], OUTPUT);\npinMode (M{0}[1], OUTPUT);\npinMode (M{0}[2], OUTPUT);\n",
+			"work":"analogWrite (M{0}[0], 200);\nif ( {1} == 1){digitalWrite(M{0}[1], LOW);\ndigitalWrite(M{0}[2], HIGH);\n}else{digitalWrite(M{0}[1], HIGH);\ndigitalWrite(M{0}[2], LOW);\n}",
+			"loop":""
+		}],
+
+		["w",
+		"Arreter le moteur %d.moteurs",
+		"arreterMoteur",
+		"M1",
+		{"inc":"",
+			"def":"int M1[3]{13,11,12}, M2[3]{8,9,10}, M3[3]{7,5,6}, M4[3]{2,3,4};\n",
+			"setup":"pinMode (M{0}[0], OUTPUT);\npinMode (M{0}[1], OUTPUT);\npinMode (M{0}[2], OUTPUT);\n",
+			"work":"analogWrite (M{0}[0], 0);\ndigitalWrite(M{0}[1], LOW);\ndigitalWrite(M{0}[1], LOW);\n",
+			"loop":""}],
+
+		["R",
+			"Lire l'état de %d.entrees_binaires",
+			"getBinaryIn",
+			"E1",
+		{"inc":"",
+			"def":"const int DATA = 54;\nconst int LOAD = 55;\nconst int CLOCK = 56;\n",
+			"setup":"pinMode(DATA, INPUT);\npinMode(LOAD, OUTPUT);\npinMode(CLOCK, OUTPUT);\n--separator--int get_Input (int E){\nbyte received;\ndigitalWrite(LOAD, LOW);\ndigitalWrite(CLOCK, HIGH);\ndelayMicroseconds(5);\ndigitalWrite(LOAD, HIGH);\ndelayMicroseconds(5);\nreceived = shiftIn(DATA, CLOCK, LSBFIRST);\ndigitalWrite(LOAD, LOW);\n E = received >> {0} & 1;\n return E;\n}\n",
+			"work":"get_Input({0});",
+			"loop":""}],
+
+		["R",
+			"Lire l'entrée analogique %d.entrees_analogiques",
+			"getAnalogIn",
+			"EX",
+		{	"inc":"",
+			"def":"",
+			"setup":"pinMode(A{0},INPUT);\n",
+			"work":"analogRead(A{0});",
+			"loop":""}]
+
+	],
+	"menus": {
+		"sens":["POSITIF","NEGATIF"],
+		"moteurs":["M1","M2","M3","M4"],
+		"entrees_analogiques":["EX","EY"],
+		"entrees_binaires":["E1","E2","E3","E4","E5","E6","E7","E8"]
+	},
+	"values":{
+		"POSITIF":1,"NEGATIF":0,
+		"EX":4,"EY":3,
+		"M1":1,"M2":2,"M3":3,"M4":4,
+		"E1":1,"E2":2,"E3":3,"E4":4,"E5":5,"E6":6,"E7":7,"E8":8
+	},
+	"translators":{
+	}
+}
