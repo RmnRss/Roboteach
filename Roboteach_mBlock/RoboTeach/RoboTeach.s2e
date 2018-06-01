@@ -87,6 +87,17 @@
 			"loop":""
 		}],
 
+		["w",
+			"Actualiser l'entrée %d.entrees_binaires",
+			"updateEntry",
+			"E1",
+		{"inc":"",
+			"def":"",
+			"setup":"",
+			"work":"",
+			"loop":""
+		}],
+
 		["R",
 			"Valeur de %d.entrees_binaires",
 			"getBinaryIn",
