@@ -46,10 +46,10 @@
   var pins_M4 = [10, 9, 8];
 
   //pin registre à décalage sur Arduino MEGA
-  var pins_reg = [54, 55, 56]; //[DATA, LOAD, CLOCK]
+  //var pins_reg = [54, 55, 56]; //[DATA, LOAD, CLOCK]
 
   //sur Arduino UNO
-  //var pins_reg = [14, 15, 16]; //[DATA, LOAD, CLOCK]
+  var pins_reg = [14, 15, 16]; //[DATA, LOAD, CLOCK]
 
   //---- Fin de déclaration des variables ----//
 
