@@ -26,9 +26,9 @@
 			"M1",
 			"POSITIF",
 		{"inc":"",
-			"def":"int M1[3]{6,7,4}, M2[3]{5,3,2}, M3[3]{11,13,12}, M4[3]{10,9,8};\n",
-			"setup":"pinMode (M{0}[0], OUTPUT);\npinMode (M{0}[1], OUTPUT);\npinMode (M{0}[2], OUTPUT);\n",
-			"work":"analogWrite (M{0}[0], 200);\nif ( {1} == 1){digitalWrite(M{0}[1], LOW);\ndigitalWrite(M{0}[2], HIGH);\n}else{digitalWrite(M{0}[1], HIGH);\ndigitalWrite(M{0}[2], LOW);\n}",
+			"def":"",
+			"setup":"",
+			"work":"",
 			"loop":""
 		}],
 
@@ -37,9 +37,9 @@
 		"arreterMoteur",
 		"M1",
 		{"inc":"",
-			"def":"int M1[3]{13,11,12}, M2[3]{8,9,10}, M3[3]{7,5,6}, M4[3]{2,3,4};\n",
-			"setup":"pinMode (M{0}[0], OUTPUT);\npinMode (M{0}[1], OUTPUT);\npinMode (M{0}[2], OUTPUT);\n",
-			"work":"analogWrite (M{0}[0], 0);\ndigitalWrite(M{0}[1], LOW);\ndigitalWrite(M{0}[1], LOW);\n",
+			"def":"",
+			"setup":"",
+			"work":"",
 			"loop":""
 		}],
 
@@ -103,21 +103,22 @@
 			"getBinaryIn",
 			"E1",
 		{"inc":"",
-			"def":"const int DATA = 54;\nconst int LOAD = 55;\nconst int CLOCK = 56;\n",
-			"setup":"pinMode(DATA, INPUT);\npinMode(LOAD, OUTPUT);\npinMode(CLOCK, OUTPUT);\n--separator--int get_Input (int E){\nbyte received;\ndigitalWrite(LOAD, LOW);\ndigitalWrite(CLOCK, HIGH);\ndelayMicroseconds(5);\ndigitalWrite(LOAD, HIGH);\ndelayMicroseconds(5);\nreceived = shiftIn(DATA, CLOCK, LSBFIRST);\ndigitalWrite(LOAD, LOW);\n E = received >> {0} & 1;\n return E;\n}\n",
-			"work":"get_Input({0});",
-			"loop":""}],
+			"def":"",
+			"setup":"",
+			"work":"",
+			"loop":""
+		}],
 
 		["B",
 			"Booléen de %d.entrees_binaires",
 			"getBinaryInBool",
 			"E1",
-			"1",
 		{"inc":"",
 			"def":"",
 			"setup":"",
 			"work":"",
-			"loop":""}],
+			"loop":""
+			}],
 
 		["R",
 			"Valeur de %d.entrees_analogiques",
@@ -125,9 +126,10 @@
 			"EX",
 		{	"inc":"",
 			"def":"",
-			"setup":"pinMode(A{0},INPUT);\n",
-			"work":"analogRead(A{0});",
-			"loop":""}]
+			"setup":"",
+			"work":"",
+			"loop":""
+			}]
 
 	],
 	"menus": {

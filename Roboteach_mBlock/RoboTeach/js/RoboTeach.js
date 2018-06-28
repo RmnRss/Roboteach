@@ -280,15 +280,45 @@
   {
     var deviceId = 30;
 
-    getPackage(nextID,deviceId,pins_reg[0]); //lecture du pin DATA
+    //getPackage(nextID,deviceId,pins_reg[0]); //lecture du pin DATA
 
-    };
+    runPackage(30, pins_reg[1], 0); //digitalWrite(LOAD, LOW);
+    runPackage(30, pins_reg[2], 1); //digitalWrite(CLOCK, HIGH);
+    runPackage(30, pins_reg[1], 1); //digitalWrite(LOAD, HIGH);
+
+    for (var i = 0 ; i<entrees_binaires[entree_binaire_select] ; ++i)
+    {
+      runPackage(30, pins_reg[2], 1); //digitalWrite(CLOCK, HIGH);
+      runPackage(30, pins_reg[2], 0); //digitalWrite(CLOCK, LOW);
+    }
+
+    responseValue(nextID,getPackage(nextID,deviceId,pins_reg[0]));
+
+  };
 
   ext.updateEntry = function(nextID, entree_binaire_select)
-    {
+  {
       var deviceId = 30;
 
       runPackage(30, pins_reg[1], 0); //digitalWrite(LOAD, LOW);
+      runPackage(30, pins_reg[2], 1); //digitalWrite(CLOCK, HIGH);
+      runPackage(30, pins_reg[1], 1); //digitalWrite(LOAD, HIGH);
+
+      for (var i = 0 ; i<entrees_binaires[entree_binaire_select] ; ++i)
+      {
+        runPackage(30, pins_reg[2], 1); //digitalWrite(CLOCK, HIGH);
+        runPackage(30, pins_reg[2], 0); //digitalWrite(CLOCK, LOW);
+      }
+
+    };
+
+    ext.getBinaryInBool = function(nextID, entree_binaire_select)
+    {
+      var deviceId = 30;
+
+      getPackage(nextID,deviceId,pins_reg[0]);
+
+      /*runPackage(30, pins_reg[1], 0); //digitalWrite(LOAD, LOW);
       runPackage(30, pins_reg[2], 1); //digitalWrite(CLOCK, HIGH);
 
       waitMilliseconds(0.005);
@@ -301,46 +331,14 @@
         {
           runPackage(30, pins_reg[2], 1); //digitalWrite(CLOCK, HIGH);
           runPackage(30, pins_reg[2], 0); //digitalWrite(CLOCK, LOW);
-        }
-
+        }*/
     };
 
-  ext.getBinaryInBool = function(nextID, entree_binaire_select)
-  {
-    var deviceId = 30;
-
-    getPackage(nextID,deviceId,pins_reg[0]);
-
-    /*runPackage(30, pins_reg[1], 0); //digitalWrite(LOAD, LOW);
-    runPackage(30, pins_reg[2], 1); //digitalWrite(CLOCK, HIGH);
-
-    waitMilliseconds(0.005);
-
-    runPackage(30, pins_reg[1], 1); //digitalWrite(LOAD, HIGH);
-
-    waitMilliseconds(0.005);
-
-    for (var i = 0 ; i<entrees_binaires[entree_binaire_select] ; ++i)
-      {
-        runPackage(30, pins_reg[2], 1); //digitalWrite(CLOCK, HIGH);
-        runPackage(30, pins_reg[2], 0); //digitalWrite(CLOCK, LOW);
-      }*/
-
+    ext.getAnalogIn = function(nextID, entree_analogique_select)
+    {
+      var deviceId = 31;
+  		getPackage(nextID,deviceId,entrees_analogiques[entree_analogique_select]);
     };
-
-  ext.getAnalogIn = function(nextID, entree_analogique_select){
-    var deviceId = 31;
-		getPackage(nextID,deviceId,entrees_analogiques[entree_analogique_select]);
-  };
-
-  function waitMilliseconds(milliseconds) {
-		var start = new Date().getTime();
-		for (var i = 0; i < 1e7; i++) {
-			if ((new Date().getTime() - start) > milliseconds){
-				break;
-			}
-		}
-	}
 
 //Fonctions de transmissions des données.
   function sendPackage(argList, type){

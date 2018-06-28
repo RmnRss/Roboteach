@@ -1,0 +1,1 @@
+Téléverser FirmataStandarPlus Dans l'UNO avant de lancer exec.py

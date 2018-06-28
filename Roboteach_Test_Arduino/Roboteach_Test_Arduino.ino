@@ -19,15 +19,15 @@
 */
 
 //Branchement des pins moteurs tels que : MX[3]{EN,IN1,IN2}
-int M1[3]{13,11,12}, M2[3]{8,9,10}, M3[3]{7,5,6}, M4[3]{2,3,4};
+int M1[3]{6,7,4}, M2[3]{5,3,2}, M3[3]{11,13,12}, M4[3]{10,9,8};
 
 /* ------- FIN VARIABLES MOTEURS ------- */
 
 /* ------- DECLARATION VARIABLES REGISTRES ------- */
 
-const int DATA = 54;
-const int LOAD = 55;
-const int CLOCK = 56;
+const int DATA = 14;
+const int LOAD = 15;
+const int CLOCK = 16;
 
 byte input_state;
 
@@ -49,7 +49,6 @@ void setup()
   Serial.begin(9600);
   delay(1000);
 
-  Serial.println("esfdf");
   //Initialisation des I/O Moteurs
   IO_Motors();
 
@@ -58,6 +57,7 @@ void setup()
 
   digitalWrite(CLOCK, LOW);
   digitalWrite(LOAD, HIGH);
+
 }
 
 void loop()
@@ -66,9 +66,9 @@ void loop()
   print_Byte(input_state);
 
   delay(50);
-  Serial.println(analogRead(A3));
-  Serial.println(analogRead(A4));
-
+  //Serial.println(analogRead(A3));
+  //Serial.println(analogRead(A4));
+  
   //test_Motor(M1);
   //test_Motor(M2);
   //test_Motor(M3);
@@ -98,13 +98,14 @@ byte read_Registers()
   digitalWrite(LOAD, HIGH);
   delayMicroseconds(5);
 
-  received = shiftIn(DATA, CLOCK, LSBFIRST);
+  //received = shiftIn(DATA, CLOCK, LSBFIRST);
 
-  /* for (int i = 0; i<8 ; i++) {
-     received = received | (digitalRead(DATA) << i);
+  for (int i = 0; i<8 ; i++) {
+     
      digitalWrite(CLOCK, HIGH);
      digitalWrite(CLOCK, LOW);
-    }*/
+     received = received | (digitalRead(DATA) << i);
+  }
 
   //Serial.print("received : ");
   //Serial.println(received, BIN);
@@ -125,7 +126,7 @@ void print_Byte(byte to_Print)
   }
 
   Serial.println(" ");
-  Serial.println(to_Print >> 0 & 1);
+  //Serial.println(to_Print >> 0 & 1);
 
   delay(1000);
 }
@@ -155,12 +156,12 @@ void IO_Motors (void)
 
 void test_Motor (int MX[3])
 {
-  analogWrite (MX[0], 200);   //Vitesse Moteur
+  analogWrite (MX[0], 1000);  //Vitesse Moteur
   digitalWrite(MX[1], LOW);   //Sens horaire
   digitalWrite(MX[2], HIGH);
-  delay(300);
+  delay(1000);
   digitalWrite(MX[1], HIGH);  //Sens anti-horaire
   digitalWrite(MX[2], LOW);
-  delay(300);
+  delay(1000);
   digitalWrite(MX[1], LOW);   //Arret
 }
