@@ -140,8 +140,8 @@ Donne la valeur analogique du matériel branché sur l’entrée sélectionnée.
 
 ## Outils utilisés
 
-*	Autodesk EAGLE – Pour les typons de l’interface
-*	Notepad++ – Pour l’écriture de l’extension mBlock
+*	Autodesk EAGLE – Pour les typons de l’interface.
+*	Notepad++ – Pour l’écriture de l’extension mBlock.
 
 ## Auteurs
 
@@ -151,4 +151,4 @@ Donne la valeur analogique du matériel branché sur l’entrée sélectionnée.
 ## Remerciements
 
 *	Au personnel de l’ENSIM, pour leur aide tout au long du projet.
-*	Merci à Daniel Puglièse, Jean-Pierre Remoué, Marc Tavera et Christophe Aubier pour leurs conseils avisés
+*	Merci à Daniel Puglièse, Jean-Pierre Remoué, Marc Tavera et Christophe Aubier pour leurs conseils avisés.
