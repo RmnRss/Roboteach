@@ -120,7 +120,7 @@ Permet au registre à décalage d’envoyer la bonne entrée vers le pin lu par 
 Donne la valeur digitale (binaire) de l’entrée sélectionnée.
 
 ```diff
-ATTENTION : Ce bloc doit toujours être précédé du bloc « Actualiser l’entrée E ». Et les entrées des deux blocs doivent être identiques. Donc si on souhaite lire la valeur de l’entrée E5, je dois sélectionner E5 sur les deux blocs.
+- ATTENTION : Ce bloc doit toujours être précédé du bloc « Actualiser l’entrée E ». Et les entrées des deux blocs doivent être identiques. Donc si on souhaite lire la valeur de l’entrée E5, je dois sélectionner E5 sur les deux blocs.
 ```
 
 ---
