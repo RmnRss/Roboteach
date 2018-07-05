@@ -134,7 +134,7 @@ Donne la valeur de l’entrée sélectionnée sous forme booléenne (vrai ou fau
 ```
 
 ---
-*Valeur de **EX/EY**.
+* Valeur de **EX/EY**.
 
 Donne la valeur analogique du matériel branché sur l’entrée sélectionnée.
 
